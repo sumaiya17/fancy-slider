@@ -13,6 +13,15 @@ let sliders = [];
 // to create your own api key
 const KEY = '15674931-a9d714b6e9d654524df198e00&q';
 
+
+document.getElementById("search")
+    .addEventListener("keypress", function(event) {
+   
+       if (event.key === 'Enter'){
+         document.getElementById("search-btn").click();
+      }   
+   });
+
 // show images 
 const showImages = (images) => {
   imagesArea.style.display = 'block';
@@ -31,7 +40,7 @@ const showImages = (images) => {
 const getImages = (query) => {
   fetch(`https://pixabay.com/api/?key=${KEY}=${query}&image_type=photo&pretty=true`)
     .then(response => response.json())
-    .then(data => showImages(data.hitS))
+    .then(data => showImages(data.hits))
     .catch(err => console.log(err))
 }
 
@@ -67,7 +76,7 @@ const createSlider = () => {
   document.querySelector('.main').style.display = 'block';
   // hide image aria
   imagesArea.style.display = 'none';
-  const duration = document.getElementById('duration').value || 1000;
+  const duration = document.getElementById('duration').value = 1000;
   sliders.forEach(slide => {
     let item = document.createElement('div')
     item.className = "slider-item";
